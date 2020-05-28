@@ -1,0 +1,17 @@
+CC = clang
+ARGS = -Wall
+
+all: clean compiler
+
+find_symbols:
+	$(CC) -c $(ARGS) find_symbols.c
+	
+symbol_table: 
+	$(CC) -c $(ARGS) symbol_table.c
+
+compiler: symbol_table.o find_symbols.o
+	$(CC) -o compiler $(ARGS) symbol_table.o find_symbols.o compiler.c
+
+clean: 
+	rm -rf test_find_symbols *.o
+
